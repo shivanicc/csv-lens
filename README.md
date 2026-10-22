@@ -21,6 +21,8 @@ You get a CSV export from Shopify, HubSpot, your bank, a survey tool, a database
 - **Export** the filtered rows as a clean CSV.
 - Light and dark mode. No build step, no accounts, no dependencies except Chart.js for drawing.
 
+![Chart](docs/chart.jpg)
+
 ![Table](docs/table.jpg)
 
 ## Run it
