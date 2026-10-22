@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CSV Lens</title>
+<meta name="description" content="Drop a CSV, get a dashboard. Runs entirely in your browser; nothing is uploaded." />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo">◔</span> CSV Lens</div>
+  <div class="meta" id="meta">Drop a CSV. Nothing leaves your browser.</div>
+  <div class="actions">
+    <button id="btnSample" class="ghost">Load sample</button>
+    <label class="btn">Open CSV<input id="file" type="file" accept=".csv,.tsv,.txt,text/csv" hidden /></label>
+  </div>
+</header>
+
+<main>
+  <section id="drop" class="drop">
+    <div class="drop-inner">
+      <div class="big">◔</div>
+      <h1>Drop a CSV here</h1>
+      <p>Column types, stats, a filterable table and charts, in two seconds.<br/>Your file is parsed locally and never uploaded.</p>
+      <p class="small">Or <button id="btnSample2" class="link">load the sample dataset</button> to try it.</p>
+    </div>
+  </section>
+
+  <section id="app" class="hidden">
+    <nav class="tabs">
+      <button data-tab="overview" class="active">Overview</button>
+      <button data-tab="chart">Chart</button>
+      <button data-tab="table">Table</button>
+      <span class="spacer"></span>
+      <input id="search" placeholder="Filter rows (any column)…" />
+      <button id="btnExport" class="ghost">Export filtered CSV</button>
+    </nav>
+
+    <div id="tab-overview" class="tab">
+      <div class="kpis" id="kpis"></div>
+      <div class="cards" id="cards"></div>
+    </div>
+
+    <div id="tab-chart" class="tab hidden">
+      <div class="controls">
+        <label>Group by <select id="xCol"></select></label>
+        <label id="granWrap" class="hidden">by <select id="gran"><option value="day">day</option><option value="month" selected>month</option><option value="year">year</option></select></label>
+        <label>Measure <select id="agg"><option value="count">count rows</option><option value="sum">sum of</option><option value="avg">average of</option><option value="min">min of</option><option value="max">max of</option></select></label>
+        <label id="yWrap" class="hidden"><select id="yCol"></select></label>
+        <label>Type <select id="chartType"><option value="bar">bar</option><option value="line">line</option><option value="doughnut">doughnut</option></select></label>
+      </div>
+      <div class="chart-wrap"><canvas id="chart"></canvas></div>
+      <p class="hint" id="chartHint"></p>
+    </div>
+
+    <div id="tab-table" class="tab hidden">
+      <div class="table-wrap"><table id="table"><thead></thead><tbody></tbody></table></div>
+      <p class="hint" id="tableHint"></p>
+    </div>
+  </section>
+</main>
+
+<footer>Open source · MIT · <a href="https://github.com/shivanicc/csv-lens" target="_blank" rel="noopener">GitHub</a></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="csv.js"></script>
+<script src="sample.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
